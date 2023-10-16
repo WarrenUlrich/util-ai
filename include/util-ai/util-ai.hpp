@@ -19,8 +19,8 @@ public:
   virtual ~base_action() = default;
 };
 
-template <typename WorldState, action<WorldState> Action =
-                                   base_action<WorldState>>
+template <typename WorldState,
+          action<WorldState> Action = base_action<WorldState>>
 class agent {
 public:
   constexpr agent() = default;
