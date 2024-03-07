@@ -12,7 +12,7 @@ concept action = requires(T t, WorldState ws) {
 
 template <typename WorldState> class base_action {
 public:
-  virtual double utility(WorldState &ws) = 0;
+  virtual double utility(const WorldState &ws) = 0;
 
   virtual void execute(WorldState &ws) = 0;
 
