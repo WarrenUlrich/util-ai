@@ -29,7 +29,19 @@ public:
     _actions.push_back(std::move(a));
   }
 
-  void decide_and_act(WorldState &ws) {
+  // void decide_and_act(WorldState &ws) {
+  //   auto max_it = std::max_element(
+  //       _actions.begin(), _actions.end(),
+  //       [&ws](const auto &a, const auto &b) {
+  //         return a->utility(ws) < b->utility(ws);
+  //       });
+
+  //   if (max_it != _actions.end()) {
+  //     (*max_it)->execute(ws);
+  //   }
+  // }
+
+  Action *decide(WorldState &ws) {
     auto max_it = std::max_element(
         _actions.begin(), _actions.end(),
         [&ws](const auto &a, const auto &b) {
@@ -37,10 +49,12 @@ public:
         });
 
     if (max_it != _actions.end()) {
-      (*max_it)->execute(ws);
+      return max_it->get();
     }
-  }
 
+    return nullptr;
+  }
+  
 private:
   std::vector<std::unique_ptr<Action>> _actions;
 };
